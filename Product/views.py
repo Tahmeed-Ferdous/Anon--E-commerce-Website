@@ -131,7 +131,6 @@ def payment_fail(request):
     return HttpResponse("Payment failed. Please try again.")
 
 def payment_cancel(request):
-    print(request.user.username)
     return HttpResponse("Payment was canceled. You can try again if you wish.")
 
 
