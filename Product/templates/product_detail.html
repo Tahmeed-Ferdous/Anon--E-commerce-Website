@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .product-container {
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .product-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .product-description {
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00bfa5;
+            margin: 10px 0;
+        }
+        .stock-info {
+            font-size: 1rem;
+            color: #888;
+            margin: 5px 0;
+        }
+        .add-to-cart {
+            background-color: #F48E9D;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            text-align: center;
+        }
+        .add-to-cart:hover {
+            background-color: #df5166;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-container">
+        <!-- Product Image -->
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+
+        <!-- Product Title -->
+        <h1 class="product-title">{{ product.name }}</h1>
+
+        <!-- Product Description -->
+        <p class="product-description">{{ product.description }}</p>
+
+        <!-- Product Price -->
+        <p class="product-price">${{ product.price }}</p>
+
+        <!-- Stock Information -->
+        <p class="stock-info">
+            {% if product.stock > 0 %}
+                In Stock: {{ product.stock }} available
+            {% else %}
+                Out of Stock
+            {% endif %}
+        </p>
+
+        <!-- Add to Cart Button -->
+        <a href="{% url 'addtocart' product.id %}" class="add-to-cart">Add to Cart</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .form-container {
+            display: flex;
+            width: 100vw; 
+            height: 100vh; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .slider-container {
+            background: #F48E9D;
+            color: #fff;
+            width: 50vw;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .form-section {
+            background-color: #f7f7f7;
+            padding: 60px;
+            width: 50vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slider-container .carousel-inner img {
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
+            max-width: 550px;
+            max-height: 350px;
+        }
+        
+
+        .form-section form {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: C;
+        }
+        
+        .form-section .form-control {
+            border-radius: 30px;
+        }
+        
+        .form-section .btn-primary {
+            background-color: #F48E9D;
+            border-radius: 30px;
+            border: none;
+        }
+        
+        .form-section .btn-primary:hover {
+            background-color: #de4b61;
+        }
+        
+        .form-section .social-btns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .form-section .social-btns .btn {
+            width: 48%;
+            font-size: 14px;
+        }
+        ::placeholder {
+            font-size: 16px; 
+            color: #999;  
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid hero-section">
+    <div class="form-container">
+            <div class="slider-container">
+                <h2>Welcome Back!</h2>
+                <p>To keep connected with us please login with your personal info</p>
+                <a href="{% url 'login' %}" class="btn btn-light mb-4 w-25 pt-3 pb-3">Sign In</a>
+                
+                <!-- Bootstrap Carousel -->
+                <div id="carouselExampleCaptions" class="carousel slide">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="https://img.freepik.com/premium-photo/handsome-cartoon-businessman-man-white-background-pictures-children-ai-generated_894218-2804.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Business Gallery</h5>
+                          <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://img.freepik.com/premium-photo/chracter-cartoon-hd-8k-vector-illustration-wallpaper_915071-46338.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5 class="text-muted">Business Presentation</h5>
+                          <p class="text-muted">Some representative placeholder content for the second slide.</p>
+                        </div>
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://t4.ftcdn.net/jpg/06/77/88/69/360_F_677886962_J3a7JV4erTy0atg44dJsOGcKuwz3Jvsi.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>Corporate Life</h5>
+                          <p>Some representative placeholder content for the third slide.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+
+
+            </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <h2 class="display-6 text-bold" style="margin-left: 70px;">Create Account</h2>
+                <div class="mb-4">
+                    <input type="text" class="form-control form-control-lg" id="name" placeholder="Name", name="name" required>
+                </div>
+                <div class="mb-4">
+                    <input type="email" class="form-control form-control-lg" id="email" placeholder="Email", name="email" required>
+                </div>
+                <div class="mb-4">
+                    <input type="password" class="form-control form-control-lg" id="password" placeholder="Password", name="password" required>
+                </div>
+                {% if error_message %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">Sign Up</button>
+                <div class="mt-5 text-center">
+                    <p>or sign up with</p>
+                    <div class="social-btns d-flex justify-content-between">
+                        <button class="btn btn-primary btn-lg m-2"><i class="bi bi-facebook"></i> Facebook</button>
+                        <button class="btn btn-primary btn-lg m-2"><i class="bi bi-google"></i> Google</button>
+                        <button class="btn btn-primary btn-lg m-2"><i class="bi bi-linkedin"></i> LinkedIn</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #F48E9D; 
+            font-family: Arial, sans-serif;
+        }
+
+        /* Main container for the login form */
+        .login-container {
+            background-color: white;
+            padding: 60px; 
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* This will ensure everything is centered */
+        }
+
+        /* Styling the input fields */
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 18px;
+            margin: 15px 0; 
+            border: none;
+            background-color: #f1f1f1;
+            border-radius: 8px; 
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+
+        /* Styling the login button */
+        .login-container button {
+            width: 100%;
+            background-color:  #F48E9D;
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 8px; 
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        .login-container button:hover {
+            background-color: #e35368;
+        }
+
+        /* Styling the register link */
+        .login-container .register-link {
+            display: block;
+            margin-top: 25px;
+            color: #999;
+            font-size: 16px; 
+            text-align: center;
+        }
+
+        .login-container .register-link a {
+            text-decoration: none;
+            color: #F48E9D;
+        }
+
+        /* Responsive styling for mobile */
+        @media (max-width: 768px) {
+            .login-container {
+                width: 90%;
+                padding: 30px;
+            }
+
+            .login-container input[type="text"],
+            .login-container input[type="password"],
+            .login-container button {
+                font-size: 16px;
+                padding: 15px;
+            }
+        }
+        .error-message {
+            color: red;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>LOGIN</h1>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" placeholder="username" name="name" required>
+            <input type="password" placeholder="password" name="password" required>
+            <button type="submit">LOGIN</button>
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+            <p class="register-link">Not registered? <a href="{% url 'register' %}">Create an account</a></p>
+            <p class="forgot-password-link"><a href="{% url 'forget_pass' %}">Forgot Password?</a></p>
+        </form>
+    </div>
+</body>
+</html>

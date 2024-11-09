@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        body {
+            background-color: #F48E9D; /* Light purple background */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px; /* Set a maximum width for the container */
+        }
+
+        .otp-box {
+            background-color: white; /* White background for the box */
+            padding: 30px;
+            border-radius: 15px; /* More rounded corners for modern look */
+            box-shadow: 0 4px 15px rgba(201, 201, 201, 0.15); /* Subtle shadow for depth */
+            text-align: center; /* Center all content */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Dark gray text for a softer look */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 15px; /* Space below the label */
+            font-weight: bold;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 95%; /* Full width input */
+            padding: 12px;
+            margin-bottom: 25px; /* More space below the input */
+            border: 2px solid white;
+            border-radius: 10px; /* Soft rounded corners */
+            font-size: 18px; /* Larger input text for modern feel */
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #F48E9D; 
+            color: white;
+            border: none;
+            border-radius: 10px; /* Soft rounded corners */
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #ea4c64; /* Lighter purple on hover */
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="otp-box">
+            <h1>Verify OTP</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" name="otp" required placeholder="___  ___  ___  ___">
+                <button type="submit">Submit</button>
+            </form>
+            {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
